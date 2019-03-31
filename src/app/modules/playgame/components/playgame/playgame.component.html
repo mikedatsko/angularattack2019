@@ -1,0 +1,83 @@
+
+<div class="description">The goal is to accumulate 10.000 experience in as few lives as possible.</div>
+
+<div class="experience">
+  Experience: <span class="experience-value">{{experience | currency:'USD':'':'1.0-0'}}</span> <small>in current life</small>
+</div>
+
+<div class="experience-accumulated">
+  Experience accumulated: <span class="experience-accumulated-value">{{experienceAccumulated | currency:'USD':'':'1.0-0'}}</span> in {{lives}} lives
+</div>
+
+<div class="deck">
+  <img src="../../../../../assets/recycle.svg" alt="" class="recycle-image">
+  <div class="arena">
+    <div *ngFor="let field of fields" [style.backgroundColor]="field.type.color" [class]="'field ' + field.type.title">
+      <div *ngIf="field.type.title !== 'empty'" class="field-content">
+        <div>
+          <small>{{field.type.title}}</small>
+        </div>
+      </div>
+    </div>
+    <div
+      [style.left.rem]="userChipLeft"
+      [style.top.rem]="userChipTop"
+      class="user-chip"
+    >
+    </div>
+  </div>
+
+  <div class="actions">
+    <div class="cube-container">
+      <div class="cube-wrap">
+        <div
+          id="cube"
+          [class.rotating]="isCubeSpinning"
+          [class.cube-value-1]="cubeValue === 1"
+          [class.cube-value-2]="cubeValue === 2"
+          [class.cube-value-3]="cubeValue === 3"
+          [class.cube-value-4]="cubeValue === 4"
+          [class.cube-value-5]="cubeValue === 5"
+          [class.cube-value-6]="cubeValue === 6"
+        >
+          <div class="cube-face front">
+            <div class="cube-dot"></div>
+          </div>
+          <div class="cube-face back">
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+          </div>
+          <div class="cube-face right">
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+          </div>
+          <div class="cube-face left">
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+          </div>
+          <div class="cube-face top">
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+          </div>
+          <div class="cube-face bottom">
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+            <div class="cube-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <span class="btn btn-success" (click)="run()">Run</span>
+  </div>
+</div>
+
