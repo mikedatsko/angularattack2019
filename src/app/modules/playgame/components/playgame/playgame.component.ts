@@ -153,6 +153,10 @@ export class PlaygameComponent implements OnInit {
           this.calculateExperience();
         }, 1000);
       } else {
+        if (userChipTop === 1) {
+          this.isNewLife = true;
+        }
+
         this.userChipTop = userChipTop;
         this.calculateExperience();
       }
@@ -183,8 +187,6 @@ export class PlaygameComponent implements OnInit {
 
   calculateExperienceValue() {
     const field = this.fields[this.id];
-
-    this.router.navigate(['/playgame', 'final', this.lives]);
 
     if (this.isNewLife === true) {
       this.isNewLife = false;
