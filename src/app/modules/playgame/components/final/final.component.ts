@@ -9,17 +9,15 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 export class FinalComponent implements OnInit {
   result: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params: ParamMap) => this.calculateResult(params.get('lives')));
   }
 
   calculateResult(lives: string) {
-    console.log('lives', lives);
-
     if (!lives) {
-
+      this.restart();
       return;
     }
 
@@ -30,12 +28,29 @@ export class FinalComponent implements OnInit {
         this.result = 'Oh man! You are too experienced for this game!';
         break;
 
-      case 0:
+      case 1:
         this.result = 'Oh man! You are too cool!';
         break;
 
+      case 2:
+        this.result = 'Not bad, not bad';
+        break;
+
+      case 3:
+        this.result = 'Good, very good';
+        break;
+
+      case 4:
+        this.result = 'Hm...';
+        break;
+
       default:
+        this.result = 'Well, you should learn more';
         break;
     }
+  }
+
+  restart() {
+    this.router.navigate(['']);
   }
 }
